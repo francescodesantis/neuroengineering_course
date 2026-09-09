@@ -23,8 +23,6 @@ We will use:
 * **Python virtual environments (`venv`)**
 * **Jupyter**
 
-> **Do not install Anaconda, Miniconda, Miniforge, or Mamba.**
-> We will use the standard Python tools `venv` and `pip`.
 
 > **If you already have Python installed** (any version, including from Anaconda, the Microsoft Store, Homebrew, or your Linux distro), **do not uninstall it or remove it from PATH.** We will install Python 3.13.15 *alongside* it and call it explicitly by its exact version, so it can't be shadowed by another Python on your system. The steps below show you how.
 
