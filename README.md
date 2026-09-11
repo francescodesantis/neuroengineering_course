@@ -16,31 +16,46 @@ The setup is the same for Windows, macOS, and Linux, with only a few differences
 
 We will use:
 
-* **Python 3.13.15**
+* **Python 3.11+** (recommended), **Python 3.9+** minimum required
 * **Visual Studio Code**
 * **Git**
 * **Git Bash** on Windows
 
+> **If you already have Python installed** (any version 3.9 or later, including from Anaconda, the Microsoft Store, Homebrew, or your Linux distro), you're good to go — no need to install anything else. If your Python is older than 3.9, or you don't have Python installed at all, follow the steps below to install a current version.
 
-> **If you already have Python installed** (any version, including from Anaconda, the Microsoft Store, Homebrew, or your Linux distro), **do not uninstall it or remove it from PATH.** We will install Python 3.13.15 *alongside* it and call it explicitly by its exact version, so it can't be shadowed by another Python on your system. The steps below show you how.
+### Checking your Python version
+
+Open a terminal (Command Prompt / PowerShell on Windows, Terminal on macOS/Linux) and run:
+
+```bash
+python3 --version
+```
+
+If that command isn't found, try:
+
+```bash
+python --version
+```
+
+You should see something like `Python 3.11.4`. As long as the version is **3.9 or higher**, you can skip the Python installation step below and go straight to Step 2.
 
 The setup consists of the following steps:
 
-1. Install Python 3.13.15
+1. Install Python (3.11+ recommended, 3.9+ required)
 2. Install Visual Studio Code
 3. Install Git
 
 ---
 
-## 1. Install Python 3.13.15
+## 1. Install Python
 
-We will use **Python 3.13.15** for the course. Because many machines already have another Python installed (from Anaconda, a Linux distro, Homebrew, etc.), the instructions below never rely on the bare `python` or `python3` command — they always call 3.13.15 explicitly, so there's no ambiguity about which interpreter you're using.
+We recommend **Python 3.11 or later**; **Python 3.9 is the minimum required version**. If you already have a compatible Python installed (see version check above), skip to step 2.
 
 ### Windows
 
-Download the **Python 3.13.15 Windows installer (64-bit)** from the official Python website:
+Download the latest **Python 3 installer (64-bit)** from the official Python website:
 
-https://www.python.org/downloads/release/python-31315/
+https://www.python.org/downloads/
 
 Run the installer.
 
@@ -50,103 +65,87 @@ Run the installer.
 ☑ Add python.exe to PATH
 ```
 
-Then click **Install Now**. (If you already have another Python on PATH, this is fine — Windows installs a version-aware **`py` launcher** that we'll use to pick 3.13.15 specifically, regardless of what `python` currently points to.)
+Then click **Install Now**.
 
-After installation, open **Git Bash** and check that the launcher can see it:
-
-```bash
-py -0
-```
-
-You should see `3.13` in the list of installed versions. Then confirm the exact version:
+After installation, open **Git Bash** and confirm the install:
 
 ```bash
-py -3.13 --version
+python --version
 ```
 
-You should see:
+You should see something like:
 
 ```text
-Python 3.13.15
+Python 3.11.4
 ```
 
-> **Do not use the bare `python --version` command to verify this** — if you have another Python installed, `python` may resolve to that one instead. Always use `py -3.13` for this course.
-
-If `py -0` does not show 3.13, close and reopen Git Bash (PATH changes require a fresh terminal), or re-run the installer and confirm "Add python.exe to PATH" was checked.
+If the command is not found, close and reopen Git Bash (PATH changes require a fresh terminal), or re-run the installer and confirm "Add python.exe to PATH" was checked.
 
 ### macOS
 
-Download the **Python 3.13.15 macOS installer**:
+Download the latest **Python 3 macOS installer** from:
 
-https://www.python.org/downloads/release/python-31315/
+https://www.python.org/downloads/
 
-Download the `.pkg` installer and follow the installation instructions. The official installer creates a version-specific command, `python3.13`, without touching whatever `python3` currently points to (system Python, Homebrew Python, a `pyenv` version, etc.).
+Download the `.pkg` installer and follow the installation instructions.
 
-Open Terminal and check the version-specific command:
-
-```bash
-python3.13 --version
-```
-
-You should see:
-
-```text
-Python 3.13.15
-```
-
-> **Do not rely on `python3 --version` to verify this.** If you have Homebrew Python, a `pyenv` shim, or another 3.x installed, `python3` may point there instead of to 3.13.15. Always use `python3.13` explicitly for this course.
-
-If `python3.13: command not found`, the installer likely didn't finish, or your terminal needs to be restarted — reopen Terminal and try again before reinstalling.
-
-If you manage Python with **Homebrew** or **pyenv**, you can install 3.13.15 through those instead if you prefer, but make sure whichever `python3.13`-equivalent command you use resolves to exactly `3.13.15` before continuing.
-
-### Linux
-
-First check what's already installed — don't assume:
+Open Terminal and check the version:
 
 ```bash
 python3 --version
-which -a python3.13
 ```
 
-Most distributions ship an older Python 3 as `python3` (used by the OS itself), so **do not replace or reinstall over it.** We need `python3.13` to exist as its own separate command.
+You should see something like:
 
-If `python3.13` is not found, install it alongside your system Python:
+```text
+Python 3.11.4
+```
 
-**Ubuntu/Debian** (via the deadsnakes PPA, which installs versioned binaries without touching the default `python3`):
+If you manage Python with **Homebrew** or **pyenv**, you can install a recent version through those instead if you prefer — just make sure the resulting version is 3.9 or higher.
+
+If `python3: command not found`, the installer likely didn't finish, or your terminal needs to be restarted — reopen Terminal and try again before reinstalling.
+
+### Linux
+
+First check what's already installed:
+
+```bash
+python3 --version
+```
+
+If the version is 3.9 or higher, you're done — skip to step 2.
+
+If it's older, or not installed, add it via your package manager:
+
+**Ubuntu/Debian:**
+
+```bash
+sudo apt update
+sudo apt install python3
+```
+
+If your distribution's default `python3` is still older than 3.9 (common on older LTS releases), install a newer version alongside it via the deadsnakes PPA:
 
 ```bash
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.13 python3.13-venv
+sudo apt install python3.11 python3.11-venv
 ```
 
 **Fedora:**
 
 ```bash
-sudo dnf install python3.13
+sudo dnf install python3
 ```
 
-**Arch:** Python 3.13 may already be the system default; if you need a pinned version alongside it, use `pyenv` instead of replacing the system package.
+**Arch:** the system Python is generally recent enough already.
 
-If your distribution doesn't package 3.13.15 and you don't want to touch system packages, install it via **pyenv** (recommended for Linux in general, since it never conflicts with the OS Python):
+If your distribution doesn't package a recent enough version and you'd rather not touch system packages, install via **pyenv**:
 
 ```bash
 curl https://pyenv.run | bash
 # follow the printed instructions to add pyenv to your shell, then restart your terminal
-pyenv install 3.13.15
-```
-
-Whichever route you use, confirm with the *explicit* command (not the bare `python3`):
-
-```bash
-python3.13 --version
-```
-
-You should see:
-
-```text
-Python 3.13.15
+pyenv install 3.11
 ```
 
 > **Do not replace your Linux system Python (`/usr/bin/python3`) if your distribution depends on it.** Breaking it can break system tools like package managers.
@@ -168,7 +167,7 @@ After opening VS Code, go to **Extensions** and install:
 
 These extensions allow you to work with Python scripts and Jupyter notebooks directly from VS Code.
 
-> Note: VS Code will list *every* Python interpreter it finds on your machine when you select a kernel later. Once you create the course's virtual environment (in a later step), always pick the interpreter inside that environment's `.venv` folder — not whatever "Python 3.x" appears at the top of the list, which may be an unrelated installation.
+> Note: VS Code will list *every* Python interpreter it finds on your machine when you select a kernel later. Once you create the course's virtual environment (in a later step), always pick the interpreter inside that environment's `.venv` folder.
 
 ---
 
