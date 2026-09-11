@@ -1,3 +1,4 @@
 neuro_env
+.DS_Store
 experiment_info.txt
 active_fes_trials.csv
