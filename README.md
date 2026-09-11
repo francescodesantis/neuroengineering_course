@@ -1,4 +1,4 @@
-# Neuroengineering and AI — Course Repository
+# Neuroengineering and AI - Course Repository
 
 This repository contains the **Jupyter notebooks and materials used during the Neuroengineering and AI course**.
 
