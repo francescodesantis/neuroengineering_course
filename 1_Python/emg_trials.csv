@@ -1,0 +1,11 @@
+subject,muscle,condition,rms,peak_amplitude
+sub-01,TA,FES,0.42,1.21
+sub-01,TA,Control,0.28,0.83
+sub-02,TA,FES,0.18,0.62
+sub-02,TA,Control,0.22,0.71
+sub-03,TA,FES,0.55,1.48
+sub-03,TA,Control,0.31,0.95
+sub-04,TA,FES,0.47,1.32
+sub-04,TA,Control,0.26,0.79
+sub-05,TA,FES,0.36,1.10
+sub-05,TA,Control,0.20,0.68
